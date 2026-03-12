@@ -1,28 +1,52 @@
 {
   "manifest_version": "0.4",
-  "name": "@nimblebraininc/example",
+  "name": "@JoeCardoso13/google-calendar",
   "version": "0.1.0",
-  "description": "MCP server for the Example API",
+  "description": "MCP server for the Google Calendar API",
   "author": {
-    "name": "NimbleBrain Inc"
+    "name": "Joe Cardoso"
   },
   "user_config": {
     "api_key": {
       "type": "string",
-      "title": "Example API Key",
-      "description": "Your API key from https://example.com/settings/api",
+      "title": "Google Calendar OAuth Token",
+      "description": "Your OAuth 2.0 access token from https://console.cloud.google.com/apis/credentials",
       "sensitive": true,
       "required": true
     }
   },
   "server": {
     "type": "python",
-    "entry_point": "mcp_example.server",
+    "entry_point": "mcp_google_calendar.server",
     "mcp_config": {
       "command": "python",
-      "args": ["-m", "mcp_example.server"],
+      "args": ["-m", "mcp_google_calendar.server"],
       "env": {
-        "EXAMPLE_API_KEY": "${user_config.api_key}"
+        "GOOGLE_CALENDAR_API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "list_calendars", "description": "List all calendars the user has access to" },
+    { "name": "get_calendar", "description": "Get metadata for a specific calendar" },
+    { "name": "list_events", "description": "List events from a calendar within a time range" },
+    { "name": "get_event", "description": "Get a single event by ID" },
+    { "name": "create_event", "description": "Create a new calendar event" },
+    { "name": "update_event", "description": "Update an existing calendar event" },
+    { "name": "delete_event", "description": "Delete a calendar event" },
+    { "name": "quick_add_event", "description": "Create an event from natural language text" },
+    { "name": "search_events", "description": "Full-text search across events" },
+    { "name": "query_freebusy", "description": "Check free/busy status for calendars in a time range" }
+  ],
+  "_meta": {
+    "org.mpaktrust": {
+      "mtf_version": "0.1",
+      "permissions": {
+        "network": "outbound",
+        "filesystem": "none",
+        "subprocess": "none",
+        "environment": "read",
+        "native": "none"
       }
     }
   }

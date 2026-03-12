@@ -1,7 +1,46 @@
 {
-  "name": "@nimblebraininc/example",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.JoeCardoso13/google-calendar",
+  "title": "Google Calendar",
+  "description": "MCP server for the Google Calendar API",
   "version": "0.1.0",
-  "description": "MCP server for the Example API",
-  "publisher": "nimblebraininc",
-  "repository": "https://github.com/NimbleBrainInc/mcp-example"
+  "websiteUrl": "https://github.com/JoeCardoso13",
+  "repository": {
+    "url": "https://github.com/JoeCardoso13/mcp-google-calendar",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": [
+        "mcpb",
+        "pypi"
+      ],
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "mcp-google-calendar",
+      "version": "0.1.0",
+      "transport": { "type": "stdio" },
+      "environmentVariables": [
+        {
+          "name": "GOOGLE_CALENDAR_API_KEY",
+          "description": "OAuth 2.0 access token for Google Calendar API",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "mcpb",
+      "version": "0.4"
+    },
+    "org.mpaktrust": {
+      "mtf_version": "0.1",
+      "permissions": {
+        "network": ["www.googleapis.com"],
+        "filesystem": "none",
+        "subprocess": "none"
+      }
+    }
+  }
 }

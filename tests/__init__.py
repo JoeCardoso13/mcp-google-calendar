@@ -1,1 +1,1 @@
-"""Tests for Example MCP Server."""
+"""Tests for Google Calendar MCP Server."""
