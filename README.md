@@ -14,7 +14,7 @@ An MCP (Model Context Protocol) server that provides access to the Google Calend
 
 ```bash
 # Configure your API key
-mpak config set @JoeCardoso13/google-calendar api_key=your_api_key_here
+mpak config set @JoeCardoso13/google-calendar access_token=your_oauth_token_here
 
 # Run the server
 mpak run @JoeCardoso13/google-calendar
@@ -30,8 +30,8 @@ cd mcp-google-calendar
 # Install dependencies with uv
 uv sync
 
-# Set your API key
-export GOOGLE_CALENDAR_API_KEY=your_api_key_here
+# Set your OAuth access token
+export GOOGLE_CALENDAR_ACCESS_TOKEN=your_oauth_token_here
 
 # Run the server
 uv run python -m mcp_google_calendar.server
@@ -39,11 +39,15 @@ uv run python -m mcp_google_calendar.server
 
 ## Configuration
 
-### Getting Your API Key
+### Getting Your Access Token
 
-1. Go to https://console.cloud.google.com/apis/credentials
-2. Create a new API key
-3. Copy the key
+Google Calendar requires OAuth 2.0 access tokens (not API keys). The easiest way to get one for testing:
+
+1. Go to https://developers.google.com/oauthplayground/
+2. Select "Google Calendar API v3" and check the scopes you need
+3. Click "Authorize APIs" and sign in with your Google account
+4. Click "Exchange authorization code for tokens"
+5. Copy the access token (expires after 1 hour)
 
 ### Claude Desktop Configuration
 

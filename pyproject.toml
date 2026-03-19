@@ -1,6 +1,6 @@
 [project]
 name = "mcp-google-calendar"
-version = "0.1.0"
+version = "0.2.0"
 description = "MCP server for the Google Calendar API"
 readme = "README.md"
 license = {text = "MIT"}

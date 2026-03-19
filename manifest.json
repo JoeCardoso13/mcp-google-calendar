@@ -1,16 +1,16 @@
 {
   "manifest_version": "0.4",
   "name": "@JoeCardoso13/google-calendar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for the Google Calendar API",
   "author": {
     "name": "Joe Cardoso"
   },
   "user_config": {
-    "api_key": {
+    "access_token": {
       "type": "string",
-      "title": "Google Calendar OAuth Token",
-      "description": "Your OAuth 2.0 access token from https://console.cloud.google.com/apis/credentials",
+      "title": "Google Calendar OAuth Access Token",
+      "description": "OAuth 2.0 access token. Generate one at https://developers.google.com/oauthplayground/ with the Google Calendar API v3 scope.",
       "sensitive": true,
       "required": true
     }
@@ -20,23 +20,56 @@
     "entry_point": "mcp_google_calendar.server",
     "mcp_config": {
       "command": "python",
-      "args": ["-m", "mcp_google_calendar.server"],
+      "args": [
+        "-m",
+        "mcp_google_calendar.server"
+      ],
       "env": {
-        "GOOGLE_CALENDAR_API_KEY": "${user_config.api_key}"
+        "GOOGLE_CALENDAR_ACCESS_TOKEN": "${user_config.access_token}"
       }
     }
   },
   "tools": [
-    { "name": "list_calendars", "description": "List all calendars the user has access to" },
-    { "name": "get_calendar", "description": "Get metadata for a specific calendar" },
-    { "name": "list_events", "description": "List events from a calendar within a time range" },
-    { "name": "get_event", "description": "Get a single event by ID" },
-    { "name": "create_event", "description": "Create a new calendar event" },
-    { "name": "update_event", "description": "Update an existing calendar event" },
-    { "name": "delete_event", "description": "Delete a calendar event" },
-    { "name": "quick_add_event", "description": "Create an event from natural language text" },
-    { "name": "search_events", "description": "Full-text search across events" },
-    { "name": "query_freebusy", "description": "Check free/busy status for calendars in a time range" }
+    {
+      "name": "list_calendars",
+      "description": "List all calendars the user has access to"
+    },
+    {
+      "name": "get_calendar",
+      "description": "Get metadata for a specific calendar"
+    },
+    {
+      "name": "list_events",
+      "description": "List events from a calendar within a time range"
+    },
+    {
+      "name": "get_event",
+      "description": "Get a single event by ID"
+    },
+    {
+      "name": "create_event",
+      "description": "Create a new calendar event"
+    },
+    {
+      "name": "update_event",
+      "description": "Update an existing calendar event"
+    },
+    {
+      "name": "delete_event",
+      "description": "Delete a calendar event"
+    },
+    {
+      "name": "quick_add_event",
+      "description": "Create an event from natural language text"
+    },
+    {
+      "name": "search_events",
+      "description": "Full-text search across events"
+    },
+    {
+      "name": "query_freebusy",
+      "description": "Check free/busy status for calendars in a time range"
+    }
   ],
   "_meta": {
     "org.mpaktrust": {

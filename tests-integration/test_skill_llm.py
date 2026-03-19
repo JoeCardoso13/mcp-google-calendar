@@ -1,7 +1,7 @@
 """
 Smoke test: verify the LLM reads the skill resource and selects the correct tool.
 
-Requires ANTHROPIC_API_KEY and GOOGLE_CALENDAR_API_KEY in environment.
+Requires ANTHROPIC_API_KEY and GOOGLE_CALENDAR_ACCESS_TOKEN in environment.
 """
 
 import os

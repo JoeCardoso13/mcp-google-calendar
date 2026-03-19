@@ -12,7 +12,7 @@ from mcp_google_calendar.api_client import GoogleCalendarAPIError, GoogleCalenda
 @pytest_asyncio.fixture
 async def mock_client():
     """Create a GoogleCalendarClient with mocked session."""
-    client = GoogleCalendarClient(api_key="test_key")
+    client = GoogleCalendarClient(access_token="test_key")
     client._session = AsyncMock()
     yield client
     await client.close()
@@ -21,42 +21,42 @@ async def mock_client():
 class TestClientInitialization:
     """Test client creation and configuration."""
 
-    def test_init_with_explicit_key(self):
-        """Client accepts an explicit API key."""
-        client = GoogleCalendarClient(api_key="explicit_key")
-        assert client.api_key == "explicit_key"
+    def test_init_with_explicit_token(self):
+        """Client accepts an explicit access token."""
+        client = GoogleCalendarClient(access_token="explicit_token")
+        assert client.access_token == "explicit_token"
 
     def test_init_with_env_var(self):
-        """Client falls back to GOOGLE_CALENDAR_API_KEY env var."""
-        os.environ["GOOGLE_CALENDAR_API_KEY"] = "env_key"
+        """Client falls back to GOOGLE_CALENDAR_ACCESS_TOKEN env var."""
+        os.environ["GOOGLE_CALENDAR_ACCESS_TOKEN"] = "env_token"
         try:
             client = GoogleCalendarClient()
-            assert client.api_key == "env_key"
+            assert client.access_token == "env_token"
         finally:
-            del os.environ["GOOGLE_CALENDAR_API_KEY"]
+            del os.environ["GOOGLE_CALENDAR_ACCESS_TOKEN"]
 
-    def test_init_without_key_raises(self):
-        """Client raises ValueError when no key is available."""
+    def test_init_without_token_raises(self):
+        """Client raises ValueError when no token is available."""
         with patch.dict(os.environ, {}, clear=True):
-            os.environ.pop("GOOGLE_CALENDAR_API_KEY", None)
-            with pytest.raises(ValueError, match="GOOGLE_CALENDAR_API_KEY is required"):
+            os.environ.pop("GOOGLE_CALENDAR_ACCESS_TOKEN", None)
+            with pytest.raises(ValueError, match="GOOGLE_CALENDAR_ACCESS_TOKEN is required"):
                 GoogleCalendarClient()
 
     def test_custom_timeout(self):
         """Client accepts a custom timeout."""
-        client = GoogleCalendarClient(api_key="key", timeout=60.0)
+        client = GoogleCalendarClient(access_token="token", timeout=60.0)
         assert client.timeout == 60.0
 
     @pytest.mark.asyncio
     async def test_context_manager(self):
         """Client works as an async context manager."""
-        async with GoogleCalendarClient(api_key="test") as client:
+        async with GoogleCalendarClient(access_token="test") as client:
             assert client._session is not None
         assert client._session is None
 
     def test_base_url(self):
         """Client uses correct Google Calendar API base URL."""
-        client = GoogleCalendarClient(api_key="key")
+        client = GoogleCalendarClient(access_token="token")
         assert client.BASE_URL == "https://www.googleapis.com/calendar/v3"
 
 

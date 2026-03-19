@@ -35,10 +35,10 @@ _client: GoogleCalendarClient | None = None
 def get_client(ctx: Context | None = None) -> GoogleCalendarClient:
     global _client
     if _client is None:
-        api_key = os.environ.get("GOOGLE_CALENDAR_API_KEY")
-        if not api_key:
-            raise ValueError("GOOGLE_CALENDAR_API_KEY environment variable is required")
-        _client = GoogleCalendarClient(api_key=api_key)
+        access_token = os.environ.get("GOOGLE_CALENDAR_ACCESS_TOKEN")
+        if not access_token:
+            raise ValueError("GOOGLE_CALENDAR_ACCESS_TOKEN environment variable is required")
+        _client = GoogleCalendarClient(access_token=access_token)
     return _client
 
 

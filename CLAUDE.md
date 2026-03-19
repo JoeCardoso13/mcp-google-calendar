@@ -25,11 +25,11 @@ src/mcp_google_calendar/
 
 ## user_config
 
-API key configured via manifest `user_config`, not hardcoded:
+OAuth access token configured via manifest `user_config`, not hardcoded:
 ```json
 {
   "user_config": {
-    "api_key": {
+    "access_token": {
       "type": "string",
       "sensitive": true,
       "required": true
@@ -37,7 +37,7 @@ API key configured via manifest `user_config`, not hardcoded:
   },
   "server": {
     "mcp_config": {
-      "env": { "GOOGLE_CALENDAR_API_KEY": "${user_config.api_key}" }
+      "env": { "GOOGLE_CALENDAR_ACCESS_TOKEN": "${user_config.access_token}" }
     }
   }
 }

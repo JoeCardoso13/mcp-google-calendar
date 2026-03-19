@@ -34,10 +34,10 @@ typecheck: ## Type check code with ty
 test: ## Run tests with pytest
 	uv run pytest tests/ -v
 
-test-integration: ## Run integration tests (requires GOOGLE_CALENDAR_API_KEY)
+test-integration: ## Run integration tests (requires GOOGLE_CALENDAR_ACCESS_TOKEN)
 	uv run pytest tests-integration/ -v --ignore=tests-integration/test_skill_llm.py
 
-test-llm: ## Run LLM smoke tests (requires GOOGLE_CALENDAR_API_KEY + ANTHROPIC_API_KEY)
+test-llm: ## Run LLM smoke tests (requires GOOGLE_CALENDAR_ACCESS_TOKEN + ANTHROPIC_API_KEY)
 	uv run pytest tests-integration/test_skill_llm.py -v
 
 test-cov: ## Run tests with coverage
@@ -71,8 +71,8 @@ endif
 	@echo "Bumping version to $(VERSION)..."
 	@jq --arg v "$(VERSION)" '.version = $$v' manifest.json > manifest.tmp.json && mv manifest.tmp.json manifest.json
 	@if [ -f server.json ]; then jq --arg v "$(VERSION)" '.version = $$v' server.json > server.tmp.json && mv server.tmp.json server.json; fi
-	@sed -i '' 's/^version = .*/version = "$(VERSION)"/' pyproject.toml
-	@sed -i '' 's/__version__ = .*/__version__ = "$(VERSION)"/' src/mcp_google_calendar/__init__.py
+	@sed -i 's/^version = .*/version = "$(VERSION)"/' pyproject.toml
+	@sed -i 's/__version__ = .*/__version__ = "$(VERSION)"/' src/mcp_google_calendar/__init__.py
 	@echo "Version bumped to $(VERSION) in all files."
 
 bundle: ## Build MCPB bundle locally
