@@ -3,7 +3,7 @@
   "name": "io.JoeCardoso13/google-calendar",
   "title": "Google Calendar",
   "description": "MCP server for the Google Calendar API",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "websiteUrl": "https://github.com/JoeCardoso13",
   "repository": {
     "url": "https://github.com/JoeCardoso13/mcp-google-calendar",

@@ -1,6 +1,6 @@
 [project]
 name = "mcp-google-calendar"
-version = "0.2.0"
+version = "0.3.0"
 description = "MCP server for the Google Calendar API"
 readme = "README.md"
 license = {text = "MIT"}
@@ -58,6 +58,7 @@ line-ending = "auto"
 
 [dependency-groups]
 dev = [
+    "anthropic>=0.86.0",
     "pytest>=8.4.0",
     "pytest-asyncio>=0.24.0",
     "pytest-cov>=6.0.0",

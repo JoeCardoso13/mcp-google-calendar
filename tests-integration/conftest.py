@@ -14,6 +14,9 @@ import os
 
 import pytest
 import pytest_asyncio
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from mcp_google_calendar.api_client import GoogleCalendarClient
 
